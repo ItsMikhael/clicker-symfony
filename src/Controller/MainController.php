@@ -17,20 +17,32 @@ class MainController extends AbstractController
     {
         return $this->render('/main/index.html.twig');
     }
-	
-	/**
+
+    /**
+     * @Route("/game/", name="gameMain")
+     */
+
+	public function gameMain()
+    {
+        return $this->render('/game/game.html.twig');
+
+
+    }
+        /* /**
      * @Route("/custom/{name?}", name="custom")
      */
-	
-	public function custom(Request $request) {
+	// an example page
+	/* public function custom(Request $request) {
 		
 		$name = $request->get('name');
 		
 		return new Response('<html><body> inny pejcz ' . $name . ' </body></html> ');
 		
 	}
+	*/
 	
-	public function login() {
-			return $this->redner('/security/login.html.twig');
+	/* public function login() {
+			return $this->render('/security/login.html.twig');
 	}
+	*/
 }
