@@ -27,7 +27,7 @@ class MainController extends AbstractController
 	public function gameMain()
     {
 
-        // fetching user data for gold
+        // FETCHING USER DATA FOR GOLD FETCHING
         $email = $this->getUser()->getUsername();
         // var_dump($email);
         $user = $this->getDoctrine()->getRepository(User::class)
@@ -36,7 +36,8 @@ class MainController extends AbstractController
         $userId = $user->getId();
         // var_dump($userId);
 
-        // fetching user's gold
+
+        // FETCHING USER'S GOLD
         $gold = $this->getDoctrine()->getRepository(Gold::class)
             ->findOneBy(['user_id' => $userId]);
         //var_dump($gold);
