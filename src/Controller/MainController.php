@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\User;
+use App\Entity\Gold;
 
 class MainController extends AbstractController
 {
@@ -24,8 +26,23 @@ class MainController extends AbstractController
 
 	public function gameMain()
     {
-        return $this->render('/game/game.html.twig');
 
+        // fetching user data for gold
+        $email = $this->getUser()->getUsername();
+        // var_dump($email);
+        $user = $this->getDoctrine()->getRepository(User::class)
+            ->findOneBy(['email' => $email]);
+        // var_dump($user);
+        $userId = $user->getId();
+        // var_dump($userId);
+
+        // fetching user's gold
+        $gold = $this->getDoctrine()->getRepository(Gold::class)
+            ->findOneBy(['user_id' => $userId]);
+        //var_dump($gold);
+
+
+        return $this->render('/game/game.html.twig', ["gold" => $gold]);
 
     }
         /* /**
@@ -33,16 +50,11 @@ class MainController extends AbstractController
      */
 	// an example page
 	/* public function custom(Request $request) {
-		
+
 		$name = $request->get('name');
-		
+
 		return new Response('<html><body> inny pejcz ' . $name . ' </body></html> ');
-		
-	}
-	*/
-	
-	/* public function login() {
-			return $this->render('/security/login.html.twig');
+
 	}
 	*/
 }

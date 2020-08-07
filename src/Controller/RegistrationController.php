@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Gold;
 use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,13 +33,14 @@ class RegistrationController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
+            $entityManager->flush();
 
             $gold = new Gold();
             $gold->setUserId($user->getId());
             $gold->setAmount(1);
             $entityManager->persist($gold);
-
             $entityManager->flush();
+
             // do anything else you need here, like send an email
 
             return $this->redirectToRoute('main');
