@@ -55,4 +55,11 @@ class Gold
 
         return $this;
     }
+
+    public function incrementAmount(int $increment): self
+    {
+        $this->amount += $increment;
+
+        return $this;
+    }
 }

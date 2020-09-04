@@ -2,13 +2,17 @@
 
 {% block title %}Clicker Symfony!{% endblock %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('gold-clicker') }}
+{% endblock %}
+
 {% block body %}
     <style>
         .center{text-align:center;}
     </style>
 
     <div align="center">
-        <h1>Hello! </br>
+        <h1>Hello! <br/>
             <div class="mb-3">
                 You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
             </div> </h1>
@@ -16,11 +20,37 @@
 
     <div align="center">
 
-        <h2>Your GOLD: {{ gold.amount }}</h2>
+        <h2> Your GOLD: <span id="gold-amount">{{ gold.amount }}</span></h2>
+
+        <div id="example-1">
+            <button id="gold_inc" >Dig Gold!</button>
+        </div>
+
+        <input type="hidden" id="ajax-userid" value="{{ gold.userid }}">
 
     </div>
 
 
+{% endblock %}
 
+{% block javascripts %}
+
+    <script type="text/javascript">
+
+    $(document).ready()
+    {
+        $("#gold_inc").on('click', function () {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '{{ path('increaseGold') }}',
+                data: {'userId': {{ app.user.id }} },
+                success: function (data) {
+                    $('#gold-amount').text(data.gold_amount);
+                }
+            });
+        });
+    }
+    </script>
 
 {% endblock %}

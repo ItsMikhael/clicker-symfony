@@ -11,4 +11,7 @@ import '../css/app.css';
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
 
+import goldClicker from './gold-clicker.js';
+var goldClicker = require('./gold-clicker');
+
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

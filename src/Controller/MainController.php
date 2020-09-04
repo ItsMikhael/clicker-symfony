@@ -29,12 +29,12 @@ class MainController extends AbstractController
 
         // FETCHING USER DATA FOR GOLD FETCHING
         $email = $this->getUser()->getUsername();
-        // var_dump($email);
+
         $user = $this->getDoctrine()->getRepository(User::class)
             ->findOneBy(['email' => $email]);
-        // var_dump($user);
+
         $userId = $user->getId();
-        // var_dump($userId);
+
 
 
         // FETCHING USER'S GOLD
@@ -46,6 +46,27 @@ class MainController extends AbstractController
         return $this->render('/game/game.html.twig', ["gold" => $gold]);
 
     }
+
+    /**
+     * @Route("/game/increaseGold/", name="increaseGold")
+     */
+
+    public function increaseGold() {
+
+	    $userId = $_POST['userId'];
+
+        $em = $this->getDoctrine()->getManager();
+
+        $gold = $this->getDoctrine()->getRepository(Gold::class)
+            ->findOneBy(['user_id' => $userId]);
+
+        $gold->incrementAmount(1);
+        $em->flush();
+
+        return $this->json(['gold_amount' => $gold->getAmount()]);
+
+    }
+
         /* /**
      * @Route("/custom/{name?}", name="custom")
      */
