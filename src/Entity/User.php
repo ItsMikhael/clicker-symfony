@@ -36,6 +36,13 @@ class User implements UserInterface
      */
     private $password;
 
+    //
+    /**
+     * @ORM\Column(type="string", length=50, unique=true)
+     */
+    private $name;
+    //
+
     public function getId(): ?int
     {
         return $this->id;
@@ -96,6 +103,20 @@ class User implements UserInterface
 
         return $this;
     }
+
+    //
+    public function getName(): string
+    {
+        return (string) $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+    //
 
     /**
      * @see UserInterface

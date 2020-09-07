@@ -67,6 +67,21 @@ class MainController extends AbstractController
 
     }
 
+    /**
+     * @Route("/game/ranking/", name="ranking")
+     */
+
+    public function ranking() {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $gold = $this->getDoctrine()->getRepository(Gold::class)
+            ->findAll();
+
+        return $this->render('/game/ranking.html.twig', ["gold" => $gold]);
+
+    }
+
         /* /**
      * @Route("/custom/{name?}", name="custom")
      */

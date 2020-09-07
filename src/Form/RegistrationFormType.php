@@ -42,6 +42,18 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('name', null, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please set a username',
+                    ]),
+                    new Length([
+                        'min' => 3,
+                        'minMessage' => 'Your username should be at least {{ limit }} characters',
+                        'max' => 20,
+                    ]),
+                ],
+            ])
         ;
     }
 

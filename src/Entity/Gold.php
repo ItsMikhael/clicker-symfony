@@ -27,6 +27,11 @@ class Gold
      */
     private $amount;
 
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $user_name;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +64,18 @@ class Gold
     public function incrementAmount(int $increment): self
     {
         $this->amount += $increment;
+
+        return $this;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->user_name;
+    }
+
+    public function setUsername($username): self
+    {
+        $this->user_name = $username;
 
         return $this;
     }

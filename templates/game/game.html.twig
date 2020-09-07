@@ -14,7 +14,7 @@
     <div align="center">
         <h1>Hello! <br/>
             <div class="mb-3">
-                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                You are logged in as {{ app.user.name }}, <a href="{{ path('app_logout') }}">Logout</a>
             </div> </h1>
     </div>
 
@@ -25,8 +25,6 @@
         <div id="example-1">
             <button id="gold_inc" >Dig Gold!</button>
         </div>
-
-        <input type="hidden" id="ajax-userid" value="{{ gold.userid }}">
 
     </div>
 

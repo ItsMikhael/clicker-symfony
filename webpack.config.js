@@ -25,6 +25,7 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('gold-clicker', './assets/js/gold-clicker.js')
+    .addStyleEntry('ranking', './assets/css/datatable.css')
     //.addEntry('page2', './assets/js/page2.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

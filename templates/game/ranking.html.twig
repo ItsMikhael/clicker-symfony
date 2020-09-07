@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clicker Symfony!{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    {{ encore_entry_link_tags('ranking') }}
+{% endblock %}
+
+{% block body %}
+    <style>
+        .center{text-align:center;}
+    </style>
+
+    <div align="center">
+        <h1>Hello! <br/>
+            <div class="mb-3">
+                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div> </h1>
+    </div>
+
+    <div align="center">
+
+        <div class="datatable">
+            <table id="app-users" class="display" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Gold Amount</th>
+                    <th>User</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{ generate_table(gold) }}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th>Gold amount</th>
+                    <th>User</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#app-users').DataTable( {
+                "order": [[ 0, "asc"]],
+                "pageLength": 25
+            });
+        } );
+    </script>
+
+{% endblock %}

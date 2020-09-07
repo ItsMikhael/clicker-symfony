@@ -38,6 +38,7 @@ class RegistrationController extends AbstractController
             $gold = new Gold();
             $gold->setUserId($user->getId());
             $gold->setAmount(1);
+            $gold->setUsername($user->getName());
             $entityManager->persist($gold);
             $entityManager->flush();
 
